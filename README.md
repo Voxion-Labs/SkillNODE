@@ -435,19 +435,13 @@ The full license text is available in the [LICENSE](LICENSE) directive.
 
 ---
 
-<table align="center" style="border: none;">
-<tr style="border: none;">
-<td width="130" align="center" style="border: none; padding-right: 15px;">
-  <img src="docs/readme/author-rudranarayan-jena.jpg" alt="Rudranarayan Jena" width="120" style="border-radius: 50%; border: 3px solid #dc2626; box-shadow: 0 4px 6px rgba(0,0,0,0.15);" />
-</td>
-<td style="border: none; vertical-align: middle;">
-  <strong><font size="4">Rudranarayan Jena</font></strong><br/>
-  <em>Founder, <a href="https://github.com/Voxion-Labs" target="_blank">Voxion Labs</a></em><br/>
-  <em>Architect: SkillNODE Platforms</em><br/>
-  <a href="https://github.com/liambrooks-lab">GitHub: @liambrooks-lab</a><br/><br/>
-  <p style="margin: 0; color: #4b5563; font-size: 0.9em; max-width: 460px;">
-    Focused on engineering deterministic systems, full-stack architectures, and high-performance product workflows that prioritize isolation, speed, and premium operational output.
-  </p>
-</td>
-</tr>
-</table>
+<br>
+<div align="right">
+  <b>Rudranarayan Jena</b><br>
+  <i>Founder @ Voxion Labs</i>
+</div>
+
+---
+<div align="center">
+  (c) 2026 Voxion Labs & Rudranarayan Jena
+</div>
