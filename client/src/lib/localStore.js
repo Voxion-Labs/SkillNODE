@@ -33,12 +33,17 @@ function trim(value) {
 
 function normalizeProfile(profile) {
   if (!profile?.id) return null;
+  const rawName = trim(profile.name);
+  const rawUsername = trim(profile.username);
+  const username = rawUsername || (rawName ? rawName.toLowerCase().replace(/[^a-z0-9_]/g, "") : "operator");
   return {
     id: profile.id,
-    name: trim(profile.name),
+    name: rawName || username,
+    username,
     email: trim(profile.email),
+    password: profile.password || "",
     phone: trim(profile.phone),
-    region: trim(profile.region),
+    region: trim(profile.region) || "Global",
     bio: trim(profile.bio),
     githubUrl: trim(profile.githubUrl),
     linkedinUrl: trim(profile.linkedinUrl),
@@ -125,16 +130,70 @@ export function hasActiveSession() {
   return Boolean(getSessionProfile()?.id);
 }
 
+export async function loginWithCredentials({ usernameOrEmail, password }) {
+  const query = trim(usernameOrEmail).toLowerCase();
+  if (!query) throw new Error("Please enter a username or email.");
+
+  const allShared = readJson(PUBLIC_KEY, {});
+  let matched = Object.values(allShared).find(
+    (p) =>
+      (p?.email && p.email.toLowerCase() === query) ||
+      (p?.username && p.username.toLowerCase() === query)
+  );
+
+  if (!matched) {
+    const current = getSessionProfile();
+    if (
+      current &&
+      ((current.email && current.email.toLowerCase() === query) ||
+        (current.username && current.username.toLowerCase() === query))
+    ) {
+      matched = current;
+    }
+  }
+
+  if (matched) {
+    if (matched.password && password && matched.password !== password) {
+      throw new Error("Invalid password. Please check your credentials.");
+    }
+    return persistProfile({
+      ...matched,
+      password: password || matched.password || "",
+      updatedAt: Date.now(),
+    });
+  }
+
+  // Auto-provision player profile
+  const isEmail = query.includes("@");
+  const identifier = isEmail ? query.split("@")[0].replace(/[^a-z0-9_]/g, "") : query.replace(/[^a-z0-9_]/g, "");
+  return persistProfile({
+    id: createId("player"),
+    name: identifier || "Operator",
+    username: identifier || "operator",
+    email: isEmail ? query : `${identifier}@skillnode.dev`,
+    password: password || "",
+    region: "Global",
+    bio: "SkillNODE Operator",
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
+  });
+}
+
 export async function createSessionProfile(input) {
   const current = getSessionProfile();
   const dpUrl = input.dpFile ? await fileToDataUrl(input.dpFile) : current?.dpUrl || null;
+  const rawName = trim(input.name);
+  const rawUsername = trim(input.username);
+  const username = rawUsername || (rawName ? rawName.toLowerCase().replace(/[^a-z0-9_]/g, "") : "operator");
 
   return persistProfile({
     id: current?.id || createId("player"),
-    name: trim(input.name),
+    name: rawName || username,
+    username,
     email: trim(input.email),
+    password: input.password || "",
     phone: trim(input.phone),
-    region: trim(input.region),
+    region: trim(input.region) || "Global",
     bio: current?.bio || "",
     githubUrl: current?.githubUrl || "",
     linkedinUrl: current?.linkedinUrl || "",
@@ -151,11 +210,16 @@ export async function updateSessionProfile(input) {
   if (!current) throw new Error("No active local profile found.");
 
   const dpUrl = input.dpFile ? await fileToDataUrl(input.dpFile) : current.dpUrl || null;
+  const rawName = trim(input.name ?? current.name);
+  const rawUsername = trim(input.username ?? current.username);
+  const username = rawUsername || (rawName ? rawName.toLowerCase().replace(/[^a-z0-9_]/g, "") : "operator");
 
   return persistProfile({
     ...current,
-    name: trim(input.name ?? current.name),
+    name: rawName || username,
+    username,
     email: trim(input.email ?? current.email),
+    password: input.password ?? current.password ?? "",
     phone: trim(input.phone ?? current.phone),
     region: trim(input.region ?? current.region),
     bio: trim(input.bio ?? current.bio),

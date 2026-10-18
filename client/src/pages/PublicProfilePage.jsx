@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
-import { Globe, Link2, MapPin, MailCheck, MoveRight, Phone, Trophy } from "lucide-react";
+import { Globe, Link2, MapPin, MailCheck, MoveRight, UserRound, Trophy } from "lucide-react";
 import { Card } from "../components/ui/Card";
 import { Button } from "../components/ui/Button";
 import { decodePublicProfilePayload, getPublicProfile } from "../lib/localStore";
@@ -85,9 +85,9 @@ export function PublicProfilePage() {
                     </div>
 
                     <div className="mt-6 grid gap-3 text-sm">
+                      <PublicMeta icon={UserRound} text={profile.username ? `@${profile.username}` : `@${profile.name.toLowerCase().replace(/\s+/g, '_')}`} />
                       <PublicMeta icon={MailCheck} text={profile.email} />
-                      <PublicMeta icon={Phone} text={profile.phone} />
-                      <PublicMeta icon={MapPin} text={profile.region} />
+                      <PublicMeta icon={MapPin} text={profile.region || "Global"} />
                     </div>
                   </div>
                 </div>

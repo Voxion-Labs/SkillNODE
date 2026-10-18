@@ -5,14 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#07070f" />
     <meta name="description" content="SkillNODE — Train hard. Look sharp. The premium skill platform for typing, coding, math, grammar, and multiplayer competition." />
-    <link rel="icon" type="image/svg+xml" href="/logo-vortex.svg" />
+    <link rel="icon" type="image/svg+xml" href="/logo.png" />
     <link rel="manifest" href="/manifest.json" />
-    <title>SkillNODE | Skill Arena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>SkillNODE — Professional Skill & Code Arena</title>
     <script>
       // Apply stored theme before first paint to avoid flash
       try {
         const t = localStorage.getItem("skillnode-theme");
-        if (t) document.documentElement.setAttribute("data-theme", t);
+        if (t === "light-blue") {
+          document.documentElement.setAttribute("data-theme", "light-white");
+        } else if (t) {
+          document.documentElement.setAttribute("data-theme", t);
+        } else {
+          document.documentElement.setAttribute("data-theme", "dark-purple");
+        }
       } catch {}
     </script>
   </head>

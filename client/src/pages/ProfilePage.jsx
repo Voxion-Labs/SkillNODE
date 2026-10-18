@@ -25,7 +25,7 @@ function ProfileInner() {
   const [summary, setSummary] = useState(null);
   const [error, setError] = useState("");
   const [draft, setDraft] = useState({
-    name: "", email: "", phone: "", region: "",
+    name: "", username: "", email: "", region: "",
     bio: "", githubUrl: "", linkedinUrl: "", portfolioUrl: "", xUrl: "",
   });
   const [dpFile, setDpFile] = useState(null);
@@ -55,10 +55,14 @@ function ProfileInner() {
         setMe(data);
         setSummary(getSummary(data.id));
         setDraft({
-          name: data.name || "", email: data.email || "",
-          phone: data.phone || "", region: data.region || "",
-          bio: data.bio || "", githubUrl: data.githubUrl || "",
-          linkedinUrl: data.linkedinUrl || "", portfolioUrl: data.portfolioUrl || "",
+          name: data.name || "",
+          username: data.username || "",
+          email: data.email || "",
+          region: data.region || "",
+          bio: data.bio || "",
+          githubUrl: data.githubUrl || "",
+          linkedinUrl: data.linkedinUrl || "",
+          portfolioUrl: data.portfolioUrl || "",
           xUrl: data.xUrl || "",
         });
       }
@@ -78,10 +82,14 @@ function ProfileInner() {
       setMe(profile);
       setSummary(getSummary(profile.id));
       setDraft({
-        name: profile.name || "", email: profile.email || "",
-        phone: profile.phone || "", region: profile.region || "",
-        bio: profile.bio || "", githubUrl: profile.githubUrl || "",
-        linkedinUrl: profile.linkedinUrl || "", portfolioUrl: profile.portfolioUrl || "",
+        name: profile.name || "",
+        username: profile.username || "",
+        email: profile.email || "",
+        region: profile.region || "",
+        bio: profile.bio || "",
+        githubUrl: profile.githubUrl || "",
+        linkedinUrl: profile.linkedinUrl || "",
+        portfolioUrl: profile.portfolioUrl || "",
         xUrl: profile.xUrl || "",
       });
       setDpFile(null);
@@ -127,10 +135,15 @@ function ProfileInner() {
   return (
     <div className="flex-col-fill" style={{ gap: 12 }}>
 
-      {/* ── Tabs ── */}
-      <div className="page-tabs" style={{ flexShrink: 0 }}>
+      {/* ── Tabs (Flutter Pill Style) ── */}
+      <div className="page-tabs" style={{ flexShrink: 0, display: "flex", gap: "8px", background: "transparent", border: "none", padding: 0 }}>
         {TABS.map((t) => (
-          <button key={t} className={`page-tab${tab === t ? " active" : ""}`} onClick={() => setTab(t)}>
+          <button
+            key={t}
+            className={`page-tab${tab === t ? " active" : ""}`}
+            onClick={() => setTab(t)}
+            style={{ borderRadius: "9999px", padding: "8px 22px", fontSize: "0.825rem", fontWeight: 700 }}
+          >
             {t}
           </button>
         ))}
@@ -138,38 +151,38 @@ function ProfileInner() {
 
       {/* ── Tab: Profile (view) ── */}
       {tab === "Profile" && (
-        <div className="app-split-grid" style={{ display: "grid", gridTemplateColumns: "0.85fr 1.15fr", gap: 10, flex: 1, minHeight: 0 }}>
+        <div className="app-split-grid" style={{ display: "grid", gridTemplateColumns: "0.85fr 1.15fr", gap: 12, flex: 1, minHeight: 0 }}>
 
           {/* Left column: identity card */}
-          <Card style={{ padding: 0, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+          <Card style={{ padding: 0, overflow: "hidden", display: "flex", flexDirection: "column", borderRadius: "20px" }}>
             {/* Cover gradient */}
-            <div style={{ height: 80, background: "linear-gradient(135deg,var(--accent-dim),var(--orb-1))" }} />
-            <div style={{ padding: 20, flex: 1 }}>
+            <div style={{ height: 80, background: "linear-gradient(135deg, var(--accent-dim), var(--orb-1))" }} />
+            <div style={{ padding: 22, flex: 1 }}>
               {/* Avatar */}
-              <div style={{ marginTop: -36, marginBottom: 14, display: "flex", alignItems: "flex-end", gap: 12 }}>
+              <div style={{ marginTop: -40, marginBottom: 14, display: "flex", alignItems: "flex-end", gap: 12 }}>
                 <div style={{
-                  width: 72, height: 72, borderRadius: 14, overflow: "hidden",
+                  width: 76, height: 76, borderRadius: "20px", overflow: "hidden",
                   border: "2px solid var(--border)", background: "var(--surface-2)", flexShrink: 0,
                 }}>
                   {dpPreview
                     ? <img src={dpPreview} alt={draft.name || "Profile"} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                    : <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.5rem", fontWeight: 800, color: "var(--accent)" }}>
-                        {(draft.name || "S").slice(0, 1).toUpperCase()}
+                    : <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.6rem", fontWeight: 800, color: "var(--accent-bright)" }}>
+                        {(draft.name || "O").slice(0, 1).toUpperCase()}
                       </div>
                   }
                 </div>
                 <div style={{ paddingBottom: 4 }}>
-                  <div className="hero-kicker">Public Profile</div>
-                  <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--text)", marginTop: 2 }}>{draft.name || "Your profile"}</div>
-                  <div style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>{draft.region || "Add your region"}</div>
+                  <span className="flutter-pill-tag" style={{ fontSize: "0.65rem", padding: "2px 8px" }}>Verified Operator</span>
+                  <div style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--text)", marginTop: 4 }}>{draft.name || "Operator"}</div>
+                  <div style={{ fontSize: "0.8rem", color: "var(--accent-bright)", fontWeight: 600 }}>@{draft.username || "operator"}</div>
                 </div>
               </div>
 
               {/* Contact info */}
-              <div style={{ display: "grid", gap: 6, marginBottom: 14 }}>
+              <div style={{ display: "grid", gap: 8, marginBottom: 16 }}>
+                <MetaLine icon={UserRound} text={`@${draft.username || "operator"}`} />
                 <MetaLine icon={MailCheck} text={draft.email || "No email"} />
-                <MetaLine icon={Phone}     text={draft.phone || "No phone"} />
-                <MetaLine icon={MapPin}    text={draft.region || "No region"} />
+                <MetaLine icon={MapPin}    text={draft.region || "Global"} />
               </div>
 
               {/* Bio */}
@@ -261,8 +274,8 @@ function ProfileInner() {
               <Field label="Email" icon={MailCheck}><Input type="email" value={draft.email} onChange={(e) => setDraft((p) => ({ ...p, email: e.target.value }))} required /></Field>
             </div>
             <div className="app-form-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-              <Field label="Phone" icon={Phone}><Input value={draft.phone} onChange={(e) => setDraft((p) => ({ ...p, phone: e.target.value }))} required /></Field>
-              <Field label="Region" icon={MapPin}><Input value={draft.region} onChange={(e) => setDraft((p) => ({ ...p, region: e.target.value }))} required /></Field>
+              <Field label="Username" icon={UserRound}><Input value={draft.username} onChange={(e) => setDraft((p) => ({ ...p, username: e.target.value }))} required /></Field>
+              <Field label="Region" icon={MapPin}><Input value={draft.region} onChange={(e) => setDraft((p) => ({ ...p, region: e.target.value }))} /></Field>
             </div>
 
             <div>

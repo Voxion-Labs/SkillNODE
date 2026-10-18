@@ -25,56 +25,62 @@ export function DashboardPage() {
   const recentResults  = summary?.recentResults  || [];
 
   return (
-    <div className="flex-col-fill" style={{ gap: 12 }}>
+    <div className="flex-col-fill" style={{ gap: 14 }}>
 
-      {/* ── Row 1: Metrics ── */}
-      <div className="app-card-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10, flexShrink: 0 }}>
-        <MetricBox label="Attempts" value={String(summary?.totals?.totalAttempts ?? 0)} />
-        <MetricBox label="Alerts"   value={String(summary?.totals?.alertCount ?? 0)} color="warning" />
-        <MetricBox label="Bests"    value={String(bestResults.length)} />
-        <MetricBox label="Leaders"  value={`${leaderboard.length} live`} color="accent" />
+      {/* ── Row 1: Metrics (Flutter Pill Style) ── */}
+      <div className="app-card-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12, flexShrink: 0 }}>
+        <MetricBox label="Total Attempts" value={String(summary?.totals?.totalAttempts ?? 0)} />
+        <MetricBox label="Integrity Alerts" value={String(summary?.totals?.alertCount ?? 0)} color="warning" />
+        <MetricBox label="Personal Bests" value={String(bestResults.length)} />
+        <MetricBox label="Live Competitors" value={`${leaderboard.length} online`} color="accent" />
       </div>
 
       {/* ── Row 2: Tracks + Leaderboard ── */}
-      <div className="app-main-grid" style={{ display: "grid", gridTemplateColumns: "1.35fr 1fr", gap: 10, flex: 1, minHeight: 0 }}>
+      <div className="app-main-grid" style={{ display: "grid", gridTemplateColumns: "1.35fr 1fr", gap: 12, flex: 1, minHeight: 0 }}>
 
         {/* Track Cards grid */}
-        <div className="card" style={{ padding: "16px", display: "flex", flexDirection: "column", minHeight: 0 }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px", flexShrink: 0 }}>
+        <div className="card" style={{ padding: "20px", display: "flex", flexDirection: "column", minHeight: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "14px", flexShrink: 0 }}>
             <div>
-              <div className="label-sm">Featured Tracks</div>
-              <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--text)", marginTop: "2px" }}>
-                Where most players start
+              <span className="flutter-pill-tag" style={{ fontSize: "0.68rem", padding: "3px 10px" }}>Active Arena</span>
+              <div style={{ fontSize: "1.15rem", fontWeight: 800, color: "var(--text)", marginTop: "4px" }}>
+                Featured Execution Tracks
               </div>
             </div>
             <Link
               to="/activities"
               className="btn btn-ghost btn-sm"
-              style={{ display: "flex", alignItems: "center", gap: "5px" }}
+              style={{ display: "flex", alignItems: "center", gap: "5px", borderRadius: "9999px" }}
             >
-              See all <ArrowRight size={13} />
+              See all tracks <ArrowRight size={13} />
             </Link>
           </div>
 
-          <div className="app-card-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, flex: 1, minHeight: 0 }}>
+          <div className="app-card-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, flex: 1, minHeight: 0 }}>
             {featuredTracks.map((track, i) => (
               <Link key={track.slug} to={track.route} style={{ textDecoration: "none" }}>
                 <div
                   className={`card animate-slide-up stagger-${i + 1}`}
-                  style={{ padding: "14px", height: "100%", cursor: "pointer" }}
+                  style={{
+                    padding: "16px", height: "100%", cursor: "pointer",
+                    background: "var(--surface-2)",
+                    borderRadius: "16px",
+                    border: "1px solid var(--border-subtle)",
+                    display: "flex", flexDirection: "column",
+                  }}
                 >
-                  {/* Accent strip */}
+                  {/* Flutter accent gradient strip */}
                   <div style={{
-                    height: "4px", borderRadius: "4px",
+                    height: "4px", borderRadius: "9999px",
                     background: "var(--btn-bg)",
                     marginBottom: "10px",
-                    opacity: 0.7,
+                    opacity: 0.9,
                   }} />
-                  <div className="label-sm" style={{ marginBottom: "4px" }}>{track.eyebrow}</div>
-                  <div style={{ fontSize: "0.925rem", fontWeight: 700, color: "var(--text)", lineHeight: 1.3 }}>
+                  <div className="label-sm" style={{ marginBottom: "4px", color: "var(--accent-bright)" }}>{track.eyebrow}</div>
+                  <div style={{ fontSize: "0.95rem", fontWeight: 800, color: "var(--text)", lineHeight: 1.3 }}>
                     {track.title}
                   </div>
-                  <div style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginTop: "5px", lineHeight: 1.5 }}>
+                  <div style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginTop: "6px", lineHeight: 1.5, flex: 1 }}>
                     {track.summary}
                   </div>
                 </div>
@@ -180,9 +186,9 @@ function MetricBox({ label, value, color }) {
     : color === "warning" ? "#f59e0b"
     : "var(--text)";
   return (
-    <div className="metric-box">
-      <div className="label-sm">{label}</div>
-      <div style={{ marginTop: "6px", fontSize: "1.75rem", fontWeight: 800, color: textColor, fontFamily: "Space Grotesk, Inter, sans-serif", letterSpacing: "-0.03em" }}>
+    <div className="metric-box" style={{ borderRadius: "16px", padding: "14px 18px", background: "var(--surface)" }}>
+      <div className="label-sm" style={{ fontSize: "0.68rem" }}>{label}</div>
+      <div style={{ marginTop: "4px", fontSize: "1.75rem", fontWeight: 800, color: textColor, fontFamily: "'Plus Jakarta Sans', sans-serif", letterSpacing: "-0.03em" }}>
         {value}
       </div>
     </div>

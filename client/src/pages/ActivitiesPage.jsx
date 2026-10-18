@@ -31,28 +31,27 @@ export function ActivitiesPage() {
     <div className="flex-col-fill" style={{ gap: 12 }}>
 
       {/* ── Header card ── */}
-      <Card style={{ padding: "18px 22px", flexShrink: 0 }}>
+      <Card style={{ padding: "24px 28px", flexShrink: 0, borderRadius: "20px" }}>
         <div className="app-hero-grid" style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 24, alignItems: "start" }}>
           <div>
-            <div className="hero-kicker">Skill Labs</div>
-            <div className="display-title" style={{ fontSize: "1.75rem", color: "var(--text)", marginTop: 4 }}>
-              Different dynamic pages for every kind of player.
+            <span className="flutter-pill-tag">Execution Labs</span>
+            <div className="display-title" style={{ fontSize: "1.85rem", color: "var(--text)", marginTop: 8 }}>
+              Modular practice tracks for every discipline.
             </div>
             <div style={{ marginTop: 8, fontSize: "0.875rem", lineHeight: 1.75, color: "var(--text-muted)" }}>
-              Each module below opens its own screen with its own interactions, stats, and flow.
-              That makes the platform feel like a real product suite instead of a single hero page with buttons.
+              Each module opens an isolated, focused arena with its own local telemetry, difficulty progression, and AI coaching loops.
             </div>
-            <div className="app-action-row" style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 8 }}>
-              <Button as={Link} to="/activities/code">Open Code Arena</Button>
-              <Button as={Link} to="/multiplayer" variant="secondary">View social rooms</Button>
+            <div className="app-action-row" style={{ marginTop: 16, display: "flex", flexWrap: "wrap", gap: 10 }}>
+              <Button as={Link} to="/activities/code" style={{ padding: "0 24px" }}>Open Code Arena</Button>
+              <Button as={Link} to="/multiplayer" variant="secondary" style={{ padding: "0 20px" }}>Social Battle Rooms</Button>
             </div>
           </div>
 
-          <div className="app-card-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+          <div className="app-card-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
             {labHighlights.map((item) => (
               <div key={item} style={{
-                borderRadius: 8, border: "1px solid var(--border-subtle)",
-                background: "var(--surface-2)", padding: "10px 12px",
+                borderRadius: "12px", border: "1px solid var(--border-subtle)",
+                background: "var(--surface-2)", padding: "12px 14px",
                 fontSize: "0.8rem", color: "var(--text-muted)", lineHeight: 1.55,
               }}>
                 {item}
@@ -62,13 +61,14 @@ export function ActivitiesPage() {
         </div>
       </Card>
 
-      {/* ── Filter tabs ── */}
-      <div className="page-tabs" style={{ flexShrink: 0 }}>
+      {/* ── Filter tabs (Flutter Pill Style) ── */}
+      <div className="page-tabs" style={{ flexShrink: 0, display: "flex", gap: "8px", background: "transparent", border: "none", padding: "0" }}>
         {CATEGORIES.map((c) => (
           <button
             key={c}
             className={`page-tab${activeCat === c ? " active" : ""}`}
             onClick={() => setActiveCat(c)}
+            style={{ borderRadius: "9999px", padding: "8px 20px", fontSize: "0.825rem", fontWeight: 700 }}
           >
             {c}
           </button>
@@ -81,30 +81,30 @@ export function ActivitiesPage() {
         style={{
           flex: 1, minHeight: 0,
           display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
-          gap: 10, alignContent: "start",
+          gap: 12, alignContent: "start",
         }}
       >
         {filtered.map((track) => (
           <Link key={track.slug} to={track.route} className="group" style={{ textDecoration: "none" }}>
-            <Card style={{ height: "100%", padding: "18px" }}>
+            <Card style={{ height: "100%", padding: "20px", borderRadius: "18px", display: "flex", flexDirection: "column" }}>
               <div style={{
-                height: 72, borderRadius: 8,
+                height: 60, borderRadius: "12px",
                 background: "var(--btn-bg)",
-                marginBottom: 14, opacity: 0.85,
+                marginBottom: 14, opacity: 0.9,
               }} />
               <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
                 <div>
-                  <div className="label-sm" style={{ marginBottom: 4 }}>{track.eyebrow}</div>
-                  <div style={{ fontSize: "1rem", fontWeight: 700, color: "var(--text)" }}>{track.title}</div>
+                  <div className="label-sm" style={{ marginBottom: 4, color: "var(--accent-bright)" }}>{track.eyebrow}</div>
+                  <div style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--text)" }}>{track.title}</div>
                 </div>
-                <ArrowUpRight size={17} style={{ color: "var(--text-faint)", flexShrink: 0, marginTop: 2 }} />
+                <ArrowUpRight size={18} style={{ color: "var(--text-faint)", flexShrink: 0, marginTop: 2 }} />
               </div>
-              <div style={{ marginTop: 8, fontSize: "0.825rem", lineHeight: 1.6, color: "var(--text-muted)" }}>
+              <div style={{ marginTop: 8, fontSize: "0.825rem", lineHeight: 1.6, color: "var(--text-muted)", flex: 1 }}>
                 {track.summary}
               </div>
-              <div style={{ marginTop: 12, display: "flex", flexWrap: "wrap", gap: 5 }}>
+              <div style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 6 }}>
                 {[track.duration, track.multiplayer, track.ai].map((tag) => (
-                  <span key={tag} className="badge">{tag}</span>
+                  <span key={tag} className="badge" style={{ borderRadius: "9999px", padding: "3px 10px" }}>{tag}</span>
                 ))}
               </div>
             </Card>

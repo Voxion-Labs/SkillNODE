@@ -1,8 +1,9 @@
 import { useTheme } from "../../context/ThemeContext";
 
 const LABELS = {
-  "dark-purple": { icon: "◐", label: "Dark Purple" },
-  "light-blue":  { icon: "○", label: "Light Blue"  },
+  "dark-purple": { icon: "✦", label: "Black & Purple" },
+  "light-white":  { icon: "✧", label: "White & Purple" },
+  "light-blue":   { icon: "✧", label: "White & Purple" },
 };
 
 export function ThemeToggle({ className = "", variant = "default" }) {
@@ -18,17 +19,17 @@ export function ThemeToggle({ className = "", variant = "default" }) {
       style={{
         display: "inline-flex",
         alignItems: "center",
-        gap: "6px",
-        padding: isShell ? "10px 12px" : "6px 12px",
-        borderRadius: isShell ? "12px" : "8px",
-        border: isShell ? "1px solid var(--shell-toggle-border, rgba(255,255,255,0.08))" : "1px solid var(--border)",
-        background: isShell ? "var(--shell-toggle-bg, linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02)))" : "var(--surface-2)",
+        gap: "7px",
+        padding: isShell ? "8px 14px" : "6px 14px",
+        borderRadius: "9999px",
+        border: "1px solid var(--border)",
+        background: "var(--surface-2)",
         color: "var(--text-muted)",
-        fontSize: isShell ? "0.8rem" : "0.78rem",
+        fontSize: "0.78rem",
         fontWeight: 600,
         cursor: "pointer",
-        letterSpacing: "0.04em",
-        transition: "border-color 0.15s, color 0.15s",
+        letterSpacing: "0.02em",
+        transition: "all 0.18s ease",
         whiteSpace: "nowrap",
       }}
       onMouseEnter={e => {

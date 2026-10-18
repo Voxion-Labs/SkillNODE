@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-const THEMES = ["dark-purple", "light-blue"];
+const THEMES = ["dark-purple", "light-white"];
 const STORAGE_KEY = "skillnode-theme";
 
 const ThemeContext = createContext({
@@ -13,6 +13,7 @@ export function ThemeProvider({ children }) {
   const [theme, setThemeState] = useState(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored === "light-blue") return "light-white";
       return THEMES.includes(stored) ? stored : "dark-purple";
     } catch {
       return "dark-purple";
