@@ -176,15 +176,15 @@ export function MultiplayerPage() {
 
   return (
     <div className="multiplayer-page flex-col-fill">
-      <Card className="multiplayer-hero-card" hoverable={false} style={{ padding: "22px 24px", flexShrink: 0 }}>
+      <Card className="multiplayer-hero-card" hoverable={false} style={{ padding: "28px 32px", borderRadius: "20px", flexShrink: 0 }}>
         <div className="multiplayer-hero">
           <div>
             <div className="multiplayer-hero-pill">Realtime Arena</div>
             <div className="hero-kicker">Multiplayer &amp; Collaboration</div>
-            <div className="display-title" style={{ fontSize: "1.75rem", color: "var(--text)", marginTop: 4 }}>
+            <div className="display-title" style={{ fontSize: "1.85rem", color: "var(--text)", marginTop: 6 }}>
               Share a room code, join from any device, and keep talking while you play.
             </div>
-            <div style={{ marginTop: 8, fontSize: "0.875rem", lineHeight: 1.75, color: "var(--text-muted)" }}>
+            <div style={{ marginTop: 10, fontSize: "0.925rem", lineHeight: 1.75, color: "var(--text-muted)" }}>
               Rooms now support reusable invite codes, realtime presence, and built-in chat so players can coordinate on
               mobile, desktop, or anything in between without getting stuck on a clipped screen.
             </div>
@@ -200,10 +200,10 @@ export function MultiplayerPage() {
       </Card>
 
       <div className="multiplayer-dashboard-grid">
-        <Card className="multiplayer-card multiplayer-room-card" hoverable={false}>
+        <Card className="multiplayer-card multiplayer-room-card" hoverable={false} style={{ borderRadius: "20px" }}>
           <div>
             <div className="hero-kicker" style={{ marginBottom: 2 }}>Room Controls</div>
-            <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--text)" }}>
+            <div style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--text)" }}>
               Create or join a lobby in a couple of taps
             </div>
           </div>
@@ -218,16 +218,16 @@ export function MultiplayerPage() {
                   joinRoom(preset.id);
                 }}
                 style={{
-                  borderRadius: 10,
-                  padding: "12px 14px",
+                  borderRadius: 14,
+                  padding: "16px 18px",
                   textAlign: "left",
                   cursor: "pointer",
                   background: joinedRoom === preset.id ? "var(--accent-dim)" : "var(--surface-2)",
                   border: `1px solid ${joinedRoom === preset.id ? "var(--border-hover)" : "var(--border-subtle)"}`,
                 }}
               >
-                <div style={{ fontSize: "0.9rem", fontWeight: 700, color: "var(--text)" }}>{preset.label}</div>
-                <div style={{ marginTop: 4, fontSize: "0.78rem", color: "var(--text-muted)", lineHeight: 1.5 }}>{preset.copy}</div>
+                <div style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--text)" }}>{preset.label}</div>
+                <div style={{ marginTop: 6, fontSize: "0.825rem", color: "var(--text-muted)", lineHeight: 1.55 }}>{preset.copy}</div>
               </button>
             ))}
           </div>

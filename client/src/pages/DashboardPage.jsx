@@ -25,10 +25,10 @@ export function DashboardPage() {
   const recentResults  = summary?.recentResults  || [];
 
   return (
-    <div className="flex-col-fill" style={{ gap: 14 }}>
+    <div className="flex-col-fill" style={{ gap: 24, paddingBottom: 48 }}>
 
       {/* ── Row 1: Metrics (Flutter Pill Style) ── */}
-      <div className="app-card-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12, flexShrink: 0 }}>
+      <div className="app-card-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16, flexShrink: 0 }}>
         <MetricBox label="Total Attempts" value={String(summary?.totals?.totalAttempts ?? 0)} />
         <MetricBox label="Integrity Alerts" value={String(summary?.totals?.alertCount ?? 0)} color="warning" />
         <MetricBox label="Personal Bests" value={String(bestResults.length)} />
@@ -36,14 +36,14 @@ export function DashboardPage() {
       </div>
 
       {/* ── Row 2: Tracks + Leaderboard ── */}
-      <div className="app-main-grid" style={{ display: "grid", gridTemplateColumns: "1.35fr 1fr", gap: 12, flex: 1, minHeight: 0 }}>
+      <div className="app-main-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(420px, 1fr))", gap: 20 }}>
 
         {/* Track Cards grid */}
-        <div className="card" style={{ padding: "20px", display: "flex", flexDirection: "column", minHeight: 0 }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "14px", flexShrink: 0 }}>
+        <div className="card" style={{ padding: "26px 28px", display: "flex", flexDirection: "column" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "18px", flexShrink: 0 }}>
             <div>
               <span className="flutter-pill-tag" style={{ fontSize: "0.68rem", padding: "3px 10px" }}>Active Arena</span>
-              <div style={{ fontSize: "1.15rem", fontWeight: 800, color: "var(--text)", marginTop: "4px" }}>
+              <div style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--text)", marginTop: "4px" }}>
                 Featured Execution Tracks
               </div>
             </div>
@@ -56,13 +56,13 @@ export function DashboardPage() {
             </Link>
           </div>
 
-          <div className="app-card-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, flex: 1, minHeight: 0 }}>
+          <div className="app-card-grid-2" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 14 }}>
             {featuredTracks.map((track, i) => (
               <Link key={track.slug} to={track.route} style={{ textDecoration: "none" }}>
                 <div
                   className={`card animate-slide-up stagger-${i + 1}`}
                   style={{
-                    padding: "16px", height: "100%", cursor: "pointer",
+                    padding: "18px 20px", height: "100%", cursor: "pointer",
                     background: "var(--surface-2)",
                     borderRadius: "16px",
                     border: "1px solid var(--border-subtle)",
@@ -73,14 +73,14 @@ export function DashboardPage() {
                   <div style={{
                     height: "4px", borderRadius: "9999px",
                     background: "var(--btn-bg)",
-                    marginBottom: "10px",
+                    marginBottom: "12px",
                     opacity: 0.9,
                   }} />
                   <div className="label-sm" style={{ marginBottom: "4px", color: "var(--accent-bright)" }}>{track.eyebrow}</div>
-                  <div style={{ fontSize: "0.95rem", fontWeight: 800, color: "var(--text)", lineHeight: 1.3 }}>
+                  <div style={{ fontSize: "0.98rem", fontWeight: 800, color: "var(--text)", lineHeight: 1.3 }}>
                     {track.title}
                   </div>
-                  <div style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginTop: "6px", lineHeight: 1.5, flex: 1 }}>
+                  <div style={{ fontSize: "0.82rem", color: "var(--text-muted)", marginTop: "6px", lineHeight: 1.55, flex: 1 }}>
                     {track.summary}
                   </div>
                 </div>
@@ -90,11 +90,11 @@ export function DashboardPage() {
         </div>
 
         {/* Leaderboard + Bests */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 10, minHeight: 0 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           {/* Leaderboard */}
-          <div className="card" style={{ padding: "16px", flex: 1, minHeight: 0, display: "flex", flexDirection: "column" }}>
+          <div className="card" style={{ padding: "24px", display: "flex", flexDirection: "column" }}>
             <div className="label-sm" style={{ marginBottom: "4px" }}>Typing Leaderboard</div>
-            <div style={{ fontSize: "1rem", fontWeight: 700, color: "var(--text)", marginBottom: "10px" }}>
+            <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--text)", marginBottom: "14px" }}>
               Shared competition layer
             </div>
             <div className="inner-scroll" style={{ flex: 1, display: "flex", flexDirection: "column", gap: "6px" }}>
@@ -139,23 +139,23 @@ export function DashboardPage() {
           </div>
 
           {/* Recent results */}
-          <div className="card" style={{ padding: "14px", flexShrink: 0 }}>
-            <div className="label-sm" style={{ marginBottom: "8px" }}>Recent Sessions</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+          <div className="card" style={{ padding: "20px 24px", borderRadius: "18px", flexShrink: 0 }}>
+            <div className="label-sm" style={{ marginBottom: "10px" }}>Recent Sessions</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
               {recentResults.length === 0 ? (
                 <EmptyState text="No sessions yet. Start an activity." />
               ) : recentResults.slice(0, 3).map(r => (
                 <div key={r.id} style={{
                   display: "flex", alignItems: "center", justifyContent: "space-between",
-                  padding: "6px 10px",
+                  padding: "8px 12px",
                   background: "var(--surface-2)",
                   border: "1px solid var(--border-subtle)",
-                  borderRadius: "7px",
+                  borderRadius: "10px",
                 }}>
-                  <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--text)", textTransform: "capitalize" }}>
+                  <span style={{ fontSize: "0.825rem", fontWeight: 600, color: "var(--text)", textTransform: "capitalize" }}>
                     {r.activityType}
                   </span>
-                  <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "var(--accent-bright)" }}>
+                  <span style={{ fontSize: "0.825rem", fontWeight: 700, color: "var(--accent-bright)" }}>
                     {fmt(r.score)}
                   </span>
                 </div>
@@ -166,7 +166,7 @@ export function DashboardPage() {
       </div>
 
       {/* ── Row 3: Signal cards ── */}
-      <div className="app-promo-grid app-card-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, flexShrink: 0 }}>
+      <div className="app-promo-grid app-card-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16, marginTop: 6, flexShrink: 0 }}>
         <SignalCard icon={BrainCircuit} title="AI coaching in context"
           copy="Hints are attached to each challenge surface so the product feels useful, not decorative." />
         <SignalCard icon={Users} title="Social by design"
@@ -186,9 +186,9 @@ function MetricBox({ label, value, color }) {
     : color === "warning" ? "#f59e0b"
     : "var(--text)";
   return (
-    <div className="metric-box" style={{ borderRadius: "16px", padding: "14px 18px", background: "var(--surface)" }}>
-      <div className="label-sm" style={{ fontSize: "0.68rem" }}>{label}</div>
-      <div style={{ marginTop: "4px", fontSize: "1.75rem", fontWeight: 800, color: textColor, fontFamily: "'Plus Jakarta Sans', sans-serif", letterSpacing: "-0.03em" }}>
+    <div className="metric-box" style={{ borderRadius: "18px", padding: "18px 22px", background: "var(--surface)" }}>
+      <div className="label-sm" style={{ fontSize: "0.7rem" }}>{label}</div>
+      <div style={{ marginTop: "6px", fontSize: "1.85rem", fontWeight: 800, color: textColor, fontFamily: "'Plus Jakarta Sans', sans-serif", letterSpacing: "-0.03em" }}>
         {value}
       </div>
     </div>
@@ -197,13 +197,13 @@ function MetricBox({ label, value, color }) {
 
 function SignalCard({ icon: Icon, title, copy }) {
   return (
-    <div className="card" style={{ padding: "14px", display: "flex", gap: "10px", alignItems: "flex-start" }}>
-      <div className="accent-block" style={{ width: 36, height: 36, borderRadius: "8px", flexShrink: 0 }}>
-        <Icon size={16} style={{ color: "var(--accent)" }} />
+    <div className="card" style={{ padding: "18px 20px", display: "flex", gap: "14px", alignItems: "flex-start", borderRadius: "18px" }}>
+      <div className="accent-block" style={{ width: 40, height: 40, borderRadius: "10px", flexShrink: 0 }}>
+        <Icon size={18} style={{ color: "var(--accent)" }} />
       </div>
       <div>
-        <div style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--text)", lineHeight: 1.3 }}>{title}</div>
-        <div style={{ fontSize: "0.775rem", color: "var(--text-muted)", marginTop: "4px", lineHeight: 1.55 }}>{copy}</div>
+        <div style={{ fontSize: "0.9rem", fontWeight: 700, color: "var(--text)", lineHeight: 1.3 }}>{title}</div>
+        <div style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginTop: "4px", lineHeight: 1.55 }}>{copy}</div>
       </div>
     </div>
   );

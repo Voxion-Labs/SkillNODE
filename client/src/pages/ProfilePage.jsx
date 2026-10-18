@@ -133,16 +133,16 @@ function ProfileInner() {
   }
 
   return (
-    <div className="flex-col-fill" style={{ gap: 12 }}>
+    <div className="flex-col-fill" style={{ gap: 24, paddingBottom: 48 }}>
 
       {/* ── Tabs (Flutter Pill Style) ── */}
-      <div className="page-tabs" style={{ flexShrink: 0, display: "flex", gap: "8px", background: "transparent", border: "none", padding: 0 }}>
+      <div className="page-tabs" style={{ flexShrink: 0, display: "flex", gap: "10px", background: "transparent", border: "none", padding: 0, marginBottom: 4 }}>
         {TABS.map((t) => (
           <button
             key={t}
             className={`page-tab${tab === t ? " active" : ""}`}
             onClick={() => setTab(t)}
-            style={{ borderRadius: "9999px", padding: "8px 22px", fontSize: "0.825rem", fontWeight: 700 }}
+            style={{ borderRadius: "9999px", padding: "9px 24px", fontSize: "0.85rem", fontWeight: 700 }}
           >
             {t}
           </button>
@@ -151,35 +151,35 @@ function ProfileInner() {
 
       {/* ── Tab: Profile (view) ── */}
       {tab === "Profile" && (
-        <div className="app-split-grid" style={{ display: "grid", gridTemplateColumns: "0.85fr 1.15fr", gap: 12, flex: 1, minHeight: 0 }}>
+        <div className="app-split-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(380px, 1fr))", gap: 20 }}>
 
           {/* Left column: identity card */}
           <Card style={{ padding: 0, overflow: "hidden", display: "flex", flexDirection: "column", borderRadius: "20px" }}>
             {/* Cover gradient */}
-            <div style={{ height: 80, background: "linear-gradient(135deg, var(--accent-dim), var(--orb-1))" }} />
-            <div style={{ padding: 22, flex: 1 }}>
+            <div style={{ height: 100, background: "linear-gradient(135deg, var(--accent-dim), var(--orb-1))" }} />
+            <div style={{ padding: 26, flex: 1 }}>
               {/* Avatar */}
-              <div style={{ marginTop: -40, marginBottom: 14, display: "flex", alignItems: "flex-end", gap: 12 }}>
+              <div style={{ marginTop: -44, marginBottom: 16, display: "flex", alignItems: "flex-end", gap: 14 }}>
                 <div style={{
-                  width: 76, height: 76, borderRadius: "20px", overflow: "hidden",
+                  width: 82, height: 82, borderRadius: "20px", overflow: "hidden",
                   border: "2px solid var(--border)", background: "var(--surface-2)", flexShrink: 0,
                 }}>
                   {dpPreview
                     ? <img src={dpPreview} alt={draft.name || "Profile"} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                    : <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.6rem", fontWeight: 800, color: "var(--accent-bright)" }}>
+                    : <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.75rem", fontWeight: 800, color: "var(--accent-bright)" }}>
                         {(draft.name || "O").slice(0, 1).toUpperCase()}
                       </div>
                   }
                 </div>
                 <div style={{ paddingBottom: 4 }}>
                   <span className="flutter-pill-tag" style={{ fontSize: "0.65rem", padding: "2px 8px" }}>Verified Operator</span>
-                  <div style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--text)", marginTop: 4 }}>{draft.name || "Operator"}</div>
-                  <div style={{ fontSize: "0.8rem", color: "var(--accent-bright)", fontWeight: 600 }}>@{draft.username || "operator"}</div>
+                  <div style={{ fontSize: "1.3rem", fontWeight: 800, color: "var(--text)", marginTop: 4 }}>{draft.name || "Operator"}</div>
+                  <div style={{ fontSize: "0.825rem", color: "var(--accent-bright)", fontWeight: 600 }}>@{draft.username || "operator"}</div>
                 </div>
               </div>
 
               {/* Contact info */}
-              <div style={{ display: "grid", gap: 8, marginBottom: 16 }}>
+              <div style={{ display: "grid", gap: 10, marginBottom: 18 }}>
                 <MetaLine icon={UserRound} text={`@${draft.username || "operator"}`} />
                 <MetaLine icon={MailCheck} text={draft.email || "No email"} />
                 <MetaLine icon={MapPin}    text={draft.region || "Global"} />
@@ -187,17 +187,17 @@ function ProfileInner() {
 
               {/* Bio */}
               <div style={{
-                borderRadius: 8, border: "1px solid var(--border-subtle)",
-                background: "var(--surface-2)", padding: "12px 14px", marginBottom: 14,
+                borderRadius: 12, border: "1px solid var(--border-subtle)",
+                background: "var(--surface-2)", padding: "14px 16px", marginBottom: 16,
               }}>
                 <div className="label-sm" style={{ marginBottom: 6 }}>Bio</div>
-                <div style={{ fontSize: "0.85rem", lineHeight: 1.7, color: "var(--text-muted)" }}>
+                <div style={{ fontSize: "0.875rem", lineHeight: 1.7, color: "var(--text-muted)" }}>
                   {draft.bio || "Add a short bio to tell people what you do, what you enjoy, or what you are building."}
                 </div>
               </div>
 
               {/* Action buttons */}
-              <div className="app-card-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 12 }}>
+              <div className="app-card-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 14 }}>
                 <Button variant="secondary" style={{ gap: 6 }} onClick={copyShareLink}>
                   <Copy size={14} /> Copy link
                 </Button>
@@ -207,7 +207,7 @@ function ProfileInner() {
               </div>
 
               {/* Stats chips */}
-              <div className="app-card-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+              <div className="app-card-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
                 <StatChip label="Attempts" value={String(summary?.totals?.totalAttempts ?? 0)} />
                 <StatChip label="Alerts"   value={String(summary?.totals?.alertCount ?? 0)} />
               </div>
@@ -215,8 +215,8 @@ function ProfileInner() {
           </Card>
 
           {/* Right column: social + recent sessions */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 10, minHeight: 0 }}>
-            <Card style={{ padding: 18 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <Card style={{ padding: 24, borderRadius: "20px" }}>
               <div className="hero-kicker" style={{ marginBottom: 4 }}>Social Links</div>
               <div style={{ fontSize: "1rem", fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>
                 Your public touchpoints
@@ -228,16 +228,16 @@ function ProfileInner() {
               </div>
             </Card>
 
-            <Card style={{ padding: 18, flex: 1, minHeight: 0, display: "flex", flexDirection: "column" }}>
+            <Card style={{ padding: 24, borderRadius: "20px" }}>
               <div className="hero-kicker" style={{ marginBottom: 4 }}>Recent Sessions</div>
               <div style={{ fontSize: "1rem", fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>
                 Latest saved activity runs
               </div>
-              <div className="inner-scroll flex-col-fill" style={{ gap: 6, display: "flex", flexDirection: "column" }}>
+              <div style={{ gap: 8, display: "flex", flexDirection: "column" }}>
                 {(summary?.recentResults || []).map((result) => (
                   <div key={result.id} style={{
-                    padding: "10px 14px",
-                    background: "var(--surface-2)", border: "1px solid var(--border-subtle)", borderRadius: 8,
+                    padding: "12px 16px",
+                    background: "var(--surface-2)", border: "1px solid var(--border-subtle)", borderRadius: 12,
                   }}>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: 600, textTransform: "capitalize", fontSize: "0.875rem", color: "var(--text)" }}>
@@ -259,7 +259,7 @@ function ProfileInner() {
 
       {/* ── Tab: Edit Profile ── */}
       {tab === "Edit" && (
-        <Card style={{ padding: 22, flex: 1, minHeight: 0 }} className="inner-scroll">
+        <Card style={{ padding: 28, borderRadius: "20px" }}>
           <div className="hero-kicker" style={{ marginBottom: 4 }}>Profile Studio</div>
           <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--text)", marginBottom: 4 }}>
             Edit and polish your identity
@@ -330,26 +330,26 @@ function ProfileInner() {
 
       {/* ── Tab: Sessions ── */}
       {tab === "Sessions" && (
-        <div style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", gap: 10 }}>
-          <div className="app-split-grid" style={{ display: "grid", gridTemplateColumns: "0.85fr 1.15fr", gap: 10, flex: 1, minHeight: 0 }}>
-            <Card style={{ padding: 18 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div className="app-split-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: 20 }}>
+            <Card style={{ padding: 24, borderRadius: "20px" }}>
               <div className="hero-kicker" style={{ marginBottom: 4 }}>Social Links</div>
-              <div style={{ fontSize: "1rem", fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>Your public touchpoints</div>
-              <div className="app-card-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+              <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--text)", marginBottom: 14 }}>Your public touchpoints</div>
+              <div className="app-card-grid-2" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 10 }}>
                 {socialRows.map((social) => (
                   <SocialCard key={social.key} label={social.label} href={draft[social.key]} />
                 ))}
               </div>
             </Card>
 
-            <Card style={{ padding: 18, display: "flex", flexDirection: "column", minHeight: 0 }}>
+            <Card style={{ padding: 24, borderRadius: "20px", display: "flex", flexDirection: "column" }}>
               <div className="hero-kicker" style={{ marginBottom: 4 }}>Recent Sessions</div>
-              <div style={{ fontSize: "1rem", fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>Latest saved activity runs</div>
-              <div className="inner-scroll flex-col-fill" style={{ gap: 6, display: "flex", flexDirection: "column" }}>
+              <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--text)", marginBottom: 14 }}>Latest saved activity runs</div>
+              <div style={{ gap: 8, display: "flex", flexDirection: "column" }}>
                 {(summary?.recentResults || []).map((result) => (
                   <div key={result.id} style={{
-                    padding: "10px 14px",
-                    background: "var(--surface-2)", border: "1px solid var(--border-subtle)", borderRadius: 8,
+                    padding: "12px 16px",
+                    background: "var(--surface-2)", border: "1px solid var(--border-subtle)", borderRadius: 12,
                   }}>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: 600, textTransform: "capitalize", fontSize: "0.875rem", color: "var(--text)" }}>

@@ -28,31 +28,31 @@ export function ActivitiesPage() {
     : skillTracks.filter((t) => TRACK_CATEGORY[t.slug] === activeCat);
 
   return (
-    <div className="flex-col-fill" style={{ gap: 12 }}>
+    <div className="flex-col-fill" style={{ gap: 24, paddingBottom: 48 }}>
 
       {/* ── Header card ── */}
-      <Card style={{ padding: "24px 28px", flexShrink: 0, borderRadius: "20px" }}>
-        <div className="app-hero-grid" style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 24, alignItems: "start" }}>
+      <Card style={{ padding: "28px 32px", flexShrink: 0, borderRadius: "20px" }}>
+        <div className="app-hero-grid" style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 28, alignItems: "start" }}>
           <div>
             <span className="flutter-pill-tag">Execution Labs</span>
-            <div className="display-title" style={{ fontSize: "1.85rem", color: "var(--text)", marginTop: 8 }}>
+            <div className="display-title" style={{ fontSize: "2rem", color: "var(--text)", marginTop: 8 }}>
               Modular practice tracks for every discipline.
             </div>
-            <div style={{ marginTop: 8, fontSize: "0.875rem", lineHeight: 1.75, color: "var(--text-muted)" }}>
+            <div style={{ marginTop: 10, fontSize: "0.95rem", lineHeight: 1.75, color: "var(--text-muted)" }}>
               Each module opens an isolated, focused arena with its own local telemetry, difficulty progression, and AI coaching loops.
             </div>
-            <div className="app-action-row" style={{ marginTop: 16, display: "flex", flexWrap: "wrap", gap: 10 }}>
-              <Button as={Link} to="/activities/code" style={{ padding: "0 24px" }}>Open Code Arena</Button>
-              <Button as={Link} to="/multiplayer" variant="secondary" style={{ padding: "0 20px" }}>Social Battle Rooms</Button>
+            <div className="app-action-row" style={{ marginTop: 20, display: "flex", flexWrap: "wrap", gap: 12 }}>
+              <Button as={Link} to="/activities/code" style={{ padding: "0 26px" }}>Open Code Arena</Button>
+              <Button as={Link} to="/multiplayer" variant="secondary" style={{ padding: "0 22px" }}>Social Battle Rooms</Button>
             </div>
           </div>
 
-          <div className="app-card-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+          <div className="app-card-grid-2" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 12 }}>
             {labHighlights.map((item) => (
               <div key={item} style={{
-                borderRadius: "12px", border: "1px solid var(--border-subtle)",
-                background: "var(--surface-2)", padding: "12px 14px",
-                fontSize: "0.8rem", color: "var(--text-muted)", lineHeight: 1.55,
+                borderRadius: "14px", border: "1px solid var(--border-subtle)",
+                background: "var(--surface-2)", padding: "14px 16px",
+                fontSize: "0.825rem", color: "var(--text-muted)", lineHeight: 1.6,
               }}>
                 {item}
               </div>
@@ -62,13 +62,13 @@ export function ActivitiesPage() {
       </Card>
 
       {/* ── Filter tabs (Flutter Pill Style) ── */}
-      <div className="page-tabs" style={{ flexShrink: 0, display: "flex", gap: "8px", background: "transparent", border: "none", padding: "0" }}>
+      <div className="page-tabs" style={{ flexShrink: 0, display: "flex", gap: "10px", background: "transparent", border: "none", padding: "0" }}>
         {CATEGORIES.map((c) => (
           <button
             key={c}
             className={`page-tab${activeCat === c ? " active" : ""}`}
             onClick={() => setActiveCat(c)}
-            style={{ borderRadius: "9999px", padding: "8px 20px", fontSize: "0.825rem", fontWeight: 700 }}
+            style={{ borderRadius: "9999px", padding: "9px 22px", fontSize: "0.85rem", fontWeight: 700 }}
           >
             {c}
           </button>
@@ -77,34 +77,34 @@ export function ActivitiesPage() {
 
       {/* ── Track grid ── */}
       <div
-        className="inner-scroll app-card-grid-3"
+        className="app-card-grid-3"
         style={{
-          flex: 1, minHeight: 0,
-          display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
-          gap: 12, alignContent: "start",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+          gap: 20,
         }}
       >
         {filtered.map((track) => (
           <Link key={track.slug} to={track.route} className="group" style={{ textDecoration: "none" }}>
-            <Card style={{ height: "100%", padding: "20px", borderRadius: "18px", display: "flex", flexDirection: "column" }}>
+            <Card style={{ height: "100%", padding: "24px", borderRadius: "20px", display: "flex", flexDirection: "column" }}>
               <div style={{
-                height: 60, borderRadius: "12px",
+                height: 6, borderRadius: "9999px",
                 background: "var(--btn-bg)",
-                marginBottom: 14, opacity: 0.9,
+                marginBottom: 16, opacity: 0.9,
               }} />
               <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
                 <div>
                   <div className="label-sm" style={{ marginBottom: 4, color: "var(--accent-bright)" }}>{track.eyebrow}</div>
-                  <div style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--text)" }}>{track.title}</div>
+                  <div style={{ fontSize: "1.1rem", fontWeight: 800, color: "var(--text)" }}>{track.title}</div>
                 </div>
                 <ArrowUpRight size={18} style={{ color: "var(--text-faint)", flexShrink: 0, marginTop: 2 }} />
               </div>
-              <div style={{ marginTop: 8, fontSize: "0.825rem", lineHeight: 1.6, color: "var(--text-muted)", flex: 1 }}>
+              <div style={{ marginTop: 10, fontSize: "0.85rem", lineHeight: 1.65, color: "var(--text-muted)", flex: 1 }}>
                 {track.summary}
               </div>
-              <div style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 6 }}>
+              <div style={{ marginTop: 16, display: "flex", flexWrap: "wrap", gap: 8 }}>
                 {[track.duration, track.multiplayer, track.ai].map((tag) => (
-                  <span key={tag} className="badge" style={{ borderRadius: "9999px", padding: "3px 10px" }}>{tag}</span>
+                  <span key={tag} className="badge" style={{ borderRadius: "9999px", padding: "4px 12px" }}>{tag}</span>
                 ))}
               </div>
             </Card>
@@ -113,7 +113,7 @@ export function ActivitiesPage() {
       </div>
 
       {/* ── Promo row ── */}
-      <div className="app-promo-grid app-card-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, flexShrink: 0 }}>
+      <div className="app-promo-grid app-card-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16, marginTop: 8, flexShrink: 0 }}>
         <PromoCard
           icon={Sparkles}
           title="AI hints where they matter"

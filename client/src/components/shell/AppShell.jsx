@@ -57,7 +57,7 @@ function ShellInner() {
 
       <div style={{ display: "flex", flex: 1, minHeight: 0, overflow: "hidden" }}>
         {/* ── Sidebar ── */}
-        <aside className="sidebar" style={{ padding: "0" }}>
+        <aside className="sidebar" style={{ padding: "0", height: "100%", maxHeight: "100%", display: "flex", flexDirection: "column" }}>
           {/* Logo + branding */}
           <div className="shell-brand" style={{
             padding: "16px 16px 12px",
@@ -112,7 +112,7 @@ function ShellInner() {
           </div>
 
           {/* Navigation */}
-          <nav className="shell-nav" style={{ padding: "0 12px", flex: 1, overflowY: "auto" }}>
+          <nav className="shell-nav" style={{ padding: "0 12px", flex: 1, overflowY: "auto", minHeight: 0 }}>
             <div className="label-sm" style={{ padding: "6px 8px", fontSize: "0.68rem" }}>Tracks & Systems</div>
             {NAV_ITEMS.map(item => (
               <NavLink
@@ -129,18 +129,27 @@ function ShellInner() {
 
           {/* Sidebar footer */}
           <div className="shell-footer" style={{
-            padding: "12px",
+            padding: "14px",
             borderTop: "1px solid var(--border-subtle)",
             flexShrink: 0,
             display: "flex",
             flexDirection: "column",
             gap: "8px",
+            background: "var(--sidebar-bg)",
           }}>
             <ThemeToggle className="shell-theme-toggle" variant="shell" />
             <button
               onClick={handleSignOut}
               className="btn btn-ghost shell-footer-action"
-              style={{ width: "100%", justifyContent: "flex-start", gap: "8px", fontSize: "0.8rem", borderRadius: "9999px" }}
+              style={{
+                width: "100%",
+                justifyContent: "flex-start",
+                gap: "8px",
+                fontSize: "0.825rem",
+                borderRadius: "9999px",
+                height: "38px",
+                color: "var(--text-muted)",
+              }}
             >
               <LogOut size={15} />
               Sign out

@@ -399,7 +399,7 @@ function LoginInner() {
                     </div>
                   </Field>
 
-                  <Button className="mt-2" size="lg" disabled={busy} style={{ width: "100%" }}>
+                  <Button className="mt-2" size="lg" disabled={busy} style={{ width: "100%", height: 46, fontSize: "0.95rem" }}>
                     {busy ? "Authenticating..." : "Enter SkillNODE →"}
                   </Button>
 
@@ -874,7 +874,7 @@ function LoginInner() {
           <div>
             <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>Company & Legal</div>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.825rem", color: "var(--text-muted)", display: "flex", flexDirection: "column", gap: 8 }}>
-              <li>Voxion Labs Proprietary Research</li>
+              <li>Voxion Labs</li>
               <li>Security & Integrity Telemetry</li>
               <li>Terms of Service</li>
               <li>Privacy Architecture</li>
@@ -884,7 +884,7 @@ function LoginInner() {
 
         {/* ── Footer ── */}
         <div style={{ maxWidth: 1240, margin: "24px auto 0", textAlign: "center", color: "var(--text-faint)", fontSize: "0.825rem", paddingTop: 16 }}>
-          (c) Voxion Labs
+          © 2026 Voxion Labs. All rights reserved.
         </div>
       </footer>
     </div>
