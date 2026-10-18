@@ -1,10 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-const THEMES = ["dark-purple", "light-white"];
+const THEMES = ["dark", "light"];
 const STORAGE_KEY = "skillnode-theme";
 
 const ThemeContext = createContext({
-  theme: "dark-purple",
+  theme: "dark",
   cycleTheme: () => {},
   setTheme: () => {},
 });
@@ -13,10 +13,11 @@ export function ThemeProvider({ children }) {
   const [theme, setThemeState] = useState(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored === "light-blue") return "light-white";
-      return THEMES.includes(stored) ? stored : "dark-purple";
+      if (stored === "dark-purple") return "dark";
+      if (stored === "light-white" || stored === "light-blue") return "light";
+      return THEMES.includes(stored) ? stored : "dark";
     } catch {
-      return "dark-purple";
+      return "dark";
     }
   });
 

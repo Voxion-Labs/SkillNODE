@@ -1,14 +1,16 @@
 import { useTheme } from "../../context/ThemeContext";
 
 const LABELS = {
-  "dark-purple": { icon: "✦", label: "Black & Purple" },
-  "light-white":  { icon: "✧", label: "White & Purple" },
-  "light-blue":   { icon: "✧", label: "White & Purple" },
+  "dark":         { icon: "☾", label: "Dark" },
+  "light":        { icon: "☼", label: "Light" },
+  "dark-purple":  { icon: "☾", label: "Dark" },
+  "light-white":  { icon: "☼", label: "Light" },
+  "light-blue":   { icon: "☼", label: "Light" },
 };
 
 export function ThemeToggle({ className = "", variant = "default" }) {
   const { theme, cycleTheme } = useTheme();
-  const current = LABELS[theme] ?? LABELS["dark-purple"];
+  const current = LABELS[theme] ?? LABELS["dark"];
   const isShell = variant === "shell";
 
   return (
@@ -33,18 +35,12 @@ export function ThemeToggle({ className = "", variant = "default" }) {
         whiteSpace: "nowrap",
       }}
       onMouseEnter={e => {
-        e.currentTarget.style.borderColor = isShell ? "var(--shell-toggle-hover-border, rgba(248,113,113,0.28))" : "var(--border-hover)";
+        e.currentTarget.style.borderColor = "var(--border-hover)";
         e.currentTarget.style.color = "var(--text)";
-        if (isShell) {
-          e.currentTarget.style.boxShadow = "0 12px 30px rgba(0,0,0,0.18)";
-        }
       }}
       onMouseLeave={e => {
-        e.currentTarget.style.borderColor = isShell ? "var(--shell-toggle-border, rgba(255,255,255,0.08))" : "var(--border)";
+        e.currentTarget.style.borderColor = "var(--border)";
         e.currentTarget.style.color = "var(--text-muted)";
-        if (isShell) {
-          e.currentTarget.style.boxShadow = "none";
-        }
       }}
     >
       <span style={{ fontSize: "1rem" }}>{current.icon}</span>

@@ -175,8 +175,18 @@ function ShellInner() {
                 letterSpacing: "0.06em",
               }}>
                 <Radio size={10} style={{ display: "inline", marginRight: 4 }} />
-                LIVE NODE
+                LIVE
               </div>
+              <ThemeToggle className="shell-theme-toggle" variant="shell" />
+              <button
+                onClick={handleSignOut}
+                title="Sign out"
+                className="btn btn-ghost"
+                style={{ width: 34, height: 34, padding: 0, borderRadius: "50%", color: "var(--text-muted)" }}
+                aria-label="Sign out"
+              >
+                <LogOut size={15} />
+              </button>
             </div>
           </div>
 
@@ -195,31 +205,16 @@ function ShellInner() {
       </div>
       </div>
 
-      {/* ── Mobile bottom nav ── */}
-      <nav style={{
-        position: "fixed",
-        bottom: 12,
-        left: "50%",
-        transform: "translateX(-50%)",
-        zIndex: 40,
-        background: "var(--sidebar-bg)",
-        border: "1px solid var(--border)",
-        borderRadius: "14px",
-        padding: "6px",
-        backdropFilter: "blur(16px)",
-        WebkitBackdropFilter: "blur(16px)",
-      }}
-        className="mobile-nav shell-mobile-nav"
-      >
+      {/* ── Mobile bottom nav (docked MNC style) ── */}
+      <nav className="mobile-nav shell-mobile-nav">
         {NAV_ITEMS.map(item => (
           <NavLink
             key={item.to}
             to={item.to}
             className={({ isActive }) => cn("nav-item", isActive && "active")}
-            style={{ flexDirection: "column", gap: "2px", padding: "8px 12px", fontSize: "0.68rem" }}
           >
             <item.icon size={18} />
-            {item.label}
+            <span>{item.label}</span>
           </NavLink>
         ))}
       </nav>
