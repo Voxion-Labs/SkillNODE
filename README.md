@@ -18,6 +18,12 @@
   <img src="https://img.shields.io/badge/license-VL--PRL-blue" alt="License" />
 </p>
 
+<p align="center">
+  <a href="https://skillnode-azure.vercel.app/login"><strong>Live Application</strong></a>
+  &nbsp;|&nbsp;
+  <a href="https://skillnode-api.onrender.com/healthz"><strong>API Health Status</strong></a>
+</p>
+
 ---
 
 ## Overview
@@ -52,43 +58,34 @@ The monorepo is partitioned into two workspaces:
 <table>
   <tr>
     <td width="50%" valign="top">
-      <img src="docs/readme/demo-dashboard-hero.png" alt="Dashboard hero" />
+      <img src="docs/readme/demo-landing.png" alt="SkillNODE Access Gateway & Landing" />
       <br />
-      <strong>1. Dashboard</strong>
+      <strong>1. Access Gateway & Landing</strong>
       <br />
-      Command-center surface with local-first profile context and platform overview.
+      Flutter-inspired landing experience with deterministic credential and 0-click demo authentication.
     </td>
     <td width="50%" valign="top">
-      <img src="docs/readme/demo-dashboard-tracks.png" alt="Featured tracks" />
+      <img src="docs/readme/demo-typing-lab.png" alt="SkillNODE Typing Lab & Telemetry" />
       <br />
-      <strong>2. Skill Tracks</strong>
+      <strong>2. Execution Lab & Fair-Play</strong>
       <br />
-      Organized execution tracks across cognitive and technical domains.
+      Focused practice arena tracking cadence, real-time WPM, accuracy, and window blur anomalies.
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <img src="docs/readme/demo-dashboard-signals.png" alt="Product signals" />
+      <img src="docs/readme/demo-multiplayer.png" alt="SkillNODE Multiplayer Arena" />
       <br />
-      <strong>3. Telemetry & Signals</strong>
+      <strong>3. Multiplayer Battle Rooms</strong>
       <br />
-      Session logs, leaderboard, AI positioning, and fair-play messaging.
+      Real-time Socket.IO room coordination, instant invite codes, and synchronized peer presence.
     </td>
     <td width="50%" valign="top">
-      <img src="docs/readme/demo-multiplayer.png" alt="Multiplayer rooms" />
+      <img src="docs/readme/demo-profile.png" alt="SkillNODE Profile Studio" />
       <br />
-      <strong>4. Multiplayer</strong>
+      <strong>4. Operator Profile Studio</strong>
       <br />
-      Preset and custom rooms with live presence tracking.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="center" valign="top">
-      <img src="docs/readme/demo-profile.png" alt="Profile studio" />
-      <br />
-      <strong>5. Profile Studio</strong>
-      <br />
-      Editable identity, biography, and social links rendered as a public-facing profile card.
+      Local-first player identity with verified operator badge, bio, and shareable performance records.
     </td>
   </tr>
 </table>

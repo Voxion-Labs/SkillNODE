@@ -207,10 +207,7 @@ function LoginInner() {
             Architecture
           </button>
           <button onClick={() => scrollToSection("benchmarks")} className="flutter-nav-link" style={{ background: "transparent", border: "none" }}>
-            Benchmarks
-          </button>
-          <button onClick={() => scrollToSection("enterprise")} className="flutter-nav-link" style={{ background: "transparent", border: "none" }}>
-            Enterprise
+            Capabilities
           </button>
         </nav>
 
@@ -736,12 +733,12 @@ function LoginInner() {
         </div>
       </section>
 
-      {/* ── Section 4: MNC Platform Comparison Matrix ── */}
+      {/* ── Section 4: Platform Capabilities & Architecture Matrix ── */}
       <section id="benchmarks" style={{ position: "relative", zIndex: 1, padding: "60px 24px", maxWidth: 1240, margin: "0 auto", width: "100%" }}>
         <div style={{ textAlign: "center", marginBottom: 36 }}>
-          <span className="flutter-pill-tag">Benchmark Comparison</span>
+          <span className="flutter-pill-tag">Capability Matrix</span>
           <h2 className="display-title" style={{ fontSize: "2.4rem", color: "var(--text)", marginTop: 10 }}>
-            Why SkillNODE Leads the Sector
+            Platform Capabilities &amp; Architecture
           </h2>
         </div>
 
@@ -758,47 +755,19 @@ function LoginInner() {
               <tr style={{ background: "var(--surface-2)", borderBottom: "1px solid var(--border)" }}>
                 <th style={{ padding: "16px 20px", color: "var(--text)", fontWeight: 700 }}>Capability</th>
                 <th style={{ padding: "16px 20px", color: "var(--accent-bright)", fontWeight: 800 }}>SkillNODE</th>
-                <th style={{ padding: "16px 20px", color: "var(--text-muted)", fontWeight: 600 }}>Fragmented Tools</th>
-                <th style={{ padding: "16px 20px", color: "var(--text-muted)", fontWeight: 600 }}>Toy Widgets</th>
+                <th style={{ padding: "16px 20px", color: "var(--text-muted)", fontWeight: 600 }}>Standard Web Apps</th>
+                <th style={{ padding: "16px 20px", color: "var(--text-muted)", fontWeight: 600 }}>Basic Practice Sites</th>
               </tr>
             </thead>
             <tbody>
-              <ComparisonRow metric="Execution Latency" skillnode="Sub-millisecond (0ms)" others="200-500ms network roundtrip" toys="Variable / Laggy" />
-              <ComparisonRow metric="Identity & Public Profile" skillnode="Cryptographic Share Card" others="Isolated account silos" toys="None (Ephemeral)" />
+              <ComparisonRow metric="Execution Architecture" skillnode="Local-First Zero Latency" others="200–500ms network roundtrip" toys="Variable / Server-dependent" />
+              <ComparisonRow metric="Player Identity" skillnode="Local Profile &amp; Public Share Route" others="Isolated account silos" toys="No persistent profile" />
               <ComparisonRow metric="Multi-Language Code Runner" skillnode="JS, PY, C++, Java, TS, SQL" others="Single language only" toys="None" />
               <ComparisonRow metric="Real-time Multiplayer Presence" skillnode="Socket.IO Room Engine" others="Limited or Asynchronous" toys="None" />
-              <ComparisonRow metric="Academic Mathematics" skillnode="Grade 11-12 Calculus/Algebra" others="Basic Arithmetic only" toys="Elementary" />
-              <ComparisonRow metric="Anti-Cheat & Fair-Play" skillnode="Client Cadence Anomaly Log" others="None" toys="None" />
+              <ComparisonRow metric="Academic Mathematics" skillnode="Grade 11–12 Calculus/Algebra" others="Basic Arithmetic only" toys="Elementary flashcards" />
+              <ComparisonRow metric="Anti-Cheat &amp; Fair-Play" skillnode="Client Cadence &amp; Blur Anomaly Log" others="None" toys="None" />
             </tbody>
           </table>
-        </div>
-      </section>
-
-      {/* ── Section 5: MNC Testimonials & Enterprise ── */}
-      <section id="enterprise" style={{ position: "relative", zIndex: 1, padding: "60px 24px", maxWidth: 1240, margin: "0 auto", width: "100%" }}>
-        <div style={{ textAlign: "center", marginBottom: 36 }}>
-          <span className="flutter-pill-tag">Operator Endorsements</span>
-          <h2 className="display-title" style={{ fontSize: "2.4rem", color: "var(--text)", marginTop: 10 }}>
-            Trusted by Builders & Researchers
-          </h2>
-        </div>
-
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 20 }}>
-          <TestimonialCard
-            quote="SkillNODE brings the authoritative discipline of terminal software to browser-based training. The local-first speed is unmatched."
-            author="David Kim"
-            role="Staff Software Engineer, Ex-Google"
-          />
-          <TestimonialCard
-            quote="Replacing elementary arithmetic with genuine Grade 11-12 mathematics makes this an essential platform for technical students."
-            author="Dr. Elena Rostova"
-            role="Computational Mathematics Researcher"
-          />
-          <TestimonialCard
-            quote="The seamless combination of typing cadence, multi-language coding, and multiplayer duels makes daily practice addictive."
-            author="Marcus Vance"
-            role="Competitive Operator & Hackathon Finalist"
-          />
         </div>
       </section>
 
@@ -956,16 +925,3 @@ function ComparisonRow({ metric, skillnode, others, toys }) {
   );
 }
 
-function TestimonialCard({ quote, author, role }) {
-  return (
-    <div className="card" style={{ padding: 24, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-      <p style={{ fontSize: "0.925rem", color: "var(--text)", lineHeight: 1.65, fontStyle: "italic", margin: "0 0 16px" }}>
-        "{quote}"
-      </p>
-      <div>
-        <div style={{ fontWeight: 800, color: "var(--text)", fontSize: "0.9rem" }}>{author}</div>
-        <div style={{ color: "var(--text-muted)", fontSize: "0.78rem", marginTop: 2 }}>{role}</div>
-      </div>
-    </div>
-  );
-}
